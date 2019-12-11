@@ -1,0 +1,17 @@
+.my-container {
+    margin-top: 70px;
+    width: 100%;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+::ng-deep alert .alert {
+	top: 75px;
+}
+
+::ng-deep .jumbotron {
+	margin-top: 55px !important;
+}

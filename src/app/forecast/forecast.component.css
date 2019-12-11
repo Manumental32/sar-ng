@@ -1,0 +1,15 @@
+iframe {
+	margin-top: -15px;
+	width: 100%;
+	height: 100%;
+}
+
+.box-white { 
+	position: absolute;
+    top: 203px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 1;
+    background: white;
+}
