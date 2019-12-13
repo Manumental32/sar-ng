@@ -11,3 +11,8 @@
 .navbar-brand {
 	width: 125px;
 }
+
+img {
+	height: 50px;
+    margin-left: 12px;
+}
