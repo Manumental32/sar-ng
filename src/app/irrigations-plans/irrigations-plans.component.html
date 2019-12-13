@@ -19,7 +19,8 @@
 			<td>{{ item.irrigation_plan_id }}</td>
 			<td> {{ item.name }}</td>
 			<td> {{ item.humidity_min_allowed }}</td>
-			<td> {{ item.light_max_allowed }}</td>
+			<!-- <td> {{ item.light_max_allowed }}</td> -->
+			<td> <span class="icon">{{ item.light_max_allowed == '1' ? 'Alto nivel de iluminación' : 'Bajo nivel de iluminación' }} </span> </td>
 			<td> {{ item.temperature_max_allowed }}</td>
 			<td>
 			<button class="btn btn-primary" (click)="selectItem(item)"> Seleccionar</button>
