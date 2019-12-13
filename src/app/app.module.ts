@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { AlertComponent } from './_components';
 import { IrrigationsPlansComponent } from './irrigations-plans/irrigations-plans.component';
+import { MeasurementsComponent } from './measurements/measurements.component';
+import { UsersComponent } from './users/users.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { IrrigationsPlansComponent } from './irrigations-plans/irrigations-plans
 	LoginComponent,
 	AlertComponent,
 	IrrigationsPlansComponent,
+	MeasurementsComponent,
+	UsersComponent,
+	AboutUsComponent,
   ],
   imports: [
     BrowserModule,

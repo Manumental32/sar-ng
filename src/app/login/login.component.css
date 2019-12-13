@@ -1,0 +1,27 @@
+.box-logo {
+	position: relative;
+	float: left;
+	display: block;
+	text-align: center;
+	width: 100%;
+}
+
+.logo-sar {
+	width: auto;
+	height: 200px;
+	margin: 15px auto;
+}
+
+.login-form {
+	min-width: 450px;
+	max-width: 100%;
+	display: inline-block;
+    display: inline-block;
+    padding: 15px 15px;
+	border: 1px solid lightgray;
+	border-radius: 2%;
+}
+
+.btn-primary{
+	padding: 5px 30px;
+}

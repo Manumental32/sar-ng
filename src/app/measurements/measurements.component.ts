@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertService } from '../_services/alert.service';
+import { Subscription, interval } from 'rxjs';
 
 export interface IrrigationPLan {
 	irrigation_plan_id: number;
@@ -12,15 +13,17 @@ export interface IrrigationPLan {
 }
 
 @Component({
-	selector: 'app-irrigations-plans',
-	templateUrl: './irrigations-plans.component.html',
-	styleUrls: ['./irrigations-plans.component.css']
+	selector: 'app-measurements',
+	templateUrl: './measurements.component.html',
+	styleUrls: ['./measurements.component.css']
 })
-export class IrrigationsPlansComponent implements OnInit {
 
-	items: IrrigationPLan[];
+export class MeasurementsComponent implements OnInit, OnDestroy {
+
+	items;
 	selectedItem: IrrigationPLan;
-	isLoading = true;
+	periodicCheckSubscription: Subscription;
+	public isLoadingItem = true;
 
 	constructor(
 		private http: HttpClient,
@@ -28,17 +31,34 @@ export class IrrigationsPlansComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		return this.http.get<IrrigationPLan[]>(`${environment.apiUrl}/getIrrigationsPlans.php`)
+
+		this.periodicCheckSubscription = interval(10000).subscribe(() => {
+			this.readArduinoMeasurements();
+		});
+
+		this.getCurrentIrrigationPlanSelected();
+
+	}
+
+	public readArduinoMeasurements() {
+		this.isLoadingItem = true;
+		// http://184.72.104.116/readArduinoMeasurements.php?arduino_id=1
+
+		const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+
+		return this.http.get(`${environment.apiUrl}/readArduinoMeasurements.php`, { headers, responseType: 'text' })
 			.subscribe(response => {
 				console.log('response :', response);
-				this.items = response;
-				this.getCurrentIrrigationPlanSelected();
-				this.isLoading = false;
+				this.items = response.split(',');
+				// console.log('this.items :', this.items);
+				// this.getCurrentIrrigationPlanSelected();
+				this.isLoadingItem = false;
 			},
-			error => {
-				this.alertService.error(error.error);
-				this.isLoading = false;
-			});
+				error => {
+					this.alertService.error(error.error);
+					this.isLoadingItem = false;
+				}
+			);
 	}
 
 	public selectItem(item) {
@@ -68,6 +88,10 @@ export class IrrigationsPlansComponent implements OnInit {
 				error => {
 					this.alertService.error(error.error);
 				});
+	}
+
+	ngOnDestroy() {
+		this.periodicCheckSubscription.unsubscribe();
 	}
 
 }

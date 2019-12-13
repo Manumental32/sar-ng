@@ -1,0 +1,31 @@
+.selected {
+	background-color: #343a40;
+	color: white;
+}
+
+.selected:hover {
+	background-color: #343a40;
+	color:white;
+}
+
+#card-selected-item {
+	margin-top: 60px;
+}
+
+.table td, .table th {
+	text-align: center;
+	height: 70px;
+}
+
+.read-measurements {
+	color: green;
+	font-size: 30px;
+}
+
+#table-measurement {
+	margin-bottom: 0;
+}
+
+#table-measurement img {
+	padding: 14px 0 !important;
+}

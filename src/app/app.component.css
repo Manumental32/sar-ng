@@ -15,3 +15,8 @@ html {
 ::ng-deep .jumbotron {
 	margin-top: 55px !important;
 }
+
+::ng-deep h2 {
+	margin-top: 15px;
+	margin-bottom: 45px;
+}
