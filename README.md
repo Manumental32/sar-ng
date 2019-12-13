@@ -1,4 +1,4 @@
-## SAR-NG
+# SAR-NG
 
 Change endpoint apiUrl in environment.ts
 
@@ -6,7 +6,7 @@ Change endpoint apiUrl in environment.ts
 
 Run `nmp install` for install proyect dependencies.
 
-# Angular 7 & Bootstrap 4
+## Angular 7 & Bootstrap 4
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
