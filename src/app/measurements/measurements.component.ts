@@ -31,7 +31,7 @@ export class MeasurementsComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit() {
-
+		this.readArduinoMeasurements();
 		this.periodicCheckSubscription = interval(10000).subscribe(() => {
 			this.readArduinoMeasurements();
 		});
@@ -46,7 +46,7 @@ export class MeasurementsComponent implements OnInit, OnDestroy {
 
 		const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
 
-		return this.http.get(`${environment.apiUrl}/readArduinoMeasurements.php`, { headers, responseType: 'text' })
+		return this.http.get(`${environment.apiUrl}/readArduinoMeasurements.php?arduino_id=1`, { headers, responseType: 'text' })
 			.subscribe(response => {
 				console.log('response :', response);
 				this.items = response.split(',');

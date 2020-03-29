@@ -4,11 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { AlertService } from '../_services/alert.service';
 
 export interface IrrigationPLan {
-	irrigation_plan_id: number;
+	irrigation_plan_id: string;
 	name: string;
-	humidity_min_allowed: number;
-	light_max_allowed: number;
-	temperature_max_allowed: number;
+	humidity_min_allowed: string;
+	light_max_allowed: string;
+	temperature_max_allowed: string;
 }
 
 @Component({
@@ -18,9 +18,9 @@ export interface IrrigationPLan {
 })
 export class IrrigationsPlansComponent implements OnInit {
 
-	items: IrrigationPLan[];
-	selectedItem: IrrigationPLan;
-	isLoading = true;
+	public items: IrrigationPLan[];
+	public selectedItem: IrrigationPLan;
+	public isLoading = true;
 
 	constructor(
 		private http: HttpClient,
@@ -41,19 +41,19 @@ export class IrrigationsPlansComponent implements OnInit {
 			});
 	}
 
-	public selectItem(item) {
+	public selectItem(item: IrrigationPLan) {
 		console.log('item :', item);
 		// http://localhost:9999/changeIrrigationPlan.php?arduino_id=1&irrigation_plan_id=2&user_id=3
-		return this.http.get(`${environment.apiUrl}/changeIrrigationPlan.php?arduino_id=1&irrigation_plan_id=${item.irrigation_plan_id}&user_id=1`)
-			.subscribe(
-				response => {
-					console.log('response :', response);
-					this.selectedItem = item;
-					this.alertService.success('Plan de riego seleccionado correctamente');
-				},
-				error => {
-					this.alertService.error(error.error);
-				});
+		return this.http.get(`${environment.apiUrl}/changeIrrigationPlan.php?arduino_id=1&irrigation_plan_id=${item.irrigation_plan_id}&user_id=1`, 
+		{ responseType: 'text'})
+			.subscribe( response => {
+				// console.log('selectItem response :', response);
+				this.selectedItem = item;
+				this.alertService.success('Plan de riego seleccionado correctamente');
+			},
+			error => {
+				this.alertService.error(error.error);
+			});
 	}
 
 	public getCurrentIrrigationPlanSelected() {

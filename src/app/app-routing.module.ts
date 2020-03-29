@@ -8,11 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
 import { IrrigationsPlansComponent } from './irrigations-plans/irrigations-plans.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { IrrigationsPlansNewComponent } from './_components/irrigations-plans-new/irrigations-plans-new.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'forecast', pathMatch: 'full', canActivate: [AuthGuard] },
 	{path: "forecast", component: ForecastComponent, canActivate: [AuthGuard]},
 	{path: "irrigations-plans", component: IrrigationsPlansComponent, canActivate: [AuthGuard]},
+	{path: "irrigations-plans/new", component: IrrigationsPlansNewComponent, canActivate: [AuthGuard]},
 	{path: "measurements", component: MeasurementsComponent, canActivate: [AuthGuard]},
 	{path: "users", component: UsersComponent, canActivate: [AuthGuard]},
 	{path: "about-us", component: AboutUsComponent, canActivate: [AuthGuard]},

@@ -14,6 +14,7 @@ import { IrrigationsPlansComponent } from './irrigations-plans/irrigations-plans
 import { MeasurementsComponent } from './measurements/measurements.component';
 import { UsersComponent } from './users/users.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { IrrigationsPlansNewComponent } from './_components/irrigations-plans-new/irrigations-plans-new.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 	LoginComponent,
 	AlertComponent,
 	IrrigationsPlansComponent,
+	IrrigationsPlansNewComponent,
 	MeasurementsComponent,
 	UsersComponent,
 	AboutUsComponent,
