@@ -1,11 +1,10 @@
-.my-container {
-    margin-top: 70px;
-    width: 100%;
-}
-
 html {
     height: 100%;
     box-sizing: border-box;
+}
+
+::ng-deep .container {
+	margin-bottom: 45px;
 }
 
 ::ng-deep alert .alert {
@@ -20,3 +19,20 @@ html {
 	margin-top: 15px;
 	margin-bottom: 45px;
 }
+
+::ng-deep .fr {
+	float: right;
+}
+
+::ng-deep .card-padding {
+	padding: 15px;
+}
+
+::ng-deep .btn-margin {
+	margin: 0 0 15px 0;
+}
+
+::ng-deep .margin-bottom {
+	margin-bottom: 45px;
+}
+

@@ -23,7 +23,7 @@ export class IrrigationsPlansNewComponent implements OnInit {
 
 	ngOnInit() {
 		this.createirrigationPlanForm = this.formBuilder.group({
-			name: ['', Validators.required], updateOn: 'blur', 
+			name: ['', Validators.required],
 			humidity_min_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
 			light_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
 			temperature_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
