@@ -2,10 +2,14 @@
 
 <h2>Planes de riego disponibles para seleccionar</h2>
 
-<a class="btn btn-primary" routerLink="/irrigations-plans/new"> Crear nuevo Plan de riego</a>
+<div class="row">
+	<div class="col-sm-12">
+		<a class="btn btn-primary btn-margin" routerLink="/irrigations-plans/new"> + Crear Plan de riego</a>
+	</div>
+</div>
 
 <div class="card text-center">
-	<table class="table table-hover">
+	<table class="table">
 		<thead>
 		<tr>
 			<th>#</th>
@@ -25,7 +29,8 @@
 			<td> <span class="icon">{{ item.light_max_allowed == '1' ? 'Alto nivel de iluminación' : 'Bajo nivel de iluminación' }} </span> </td>
 			<td> {{ item.temperature_max_allowed }}</td>
 			<td>
-			<button class="btn btn-primary" (click)="selectItem(item)"> Seleccionar</button>
+				<a class="btn btn-secondary" [routerLink]="['/irrigations-plans/' + item.irrigation_plan_id]"> Editar</a>
+				<button class="btn btn-primary" (click)="selectItem(item)"> Seleccionar</button>
 			</td>
 		</tr>
 		</tbody>

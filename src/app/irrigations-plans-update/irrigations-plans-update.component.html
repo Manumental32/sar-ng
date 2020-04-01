@@ -1,0 +1,62 @@
+<div class="container" style="margin-top: 100px;">
+
+	<h2>Actualizar Plan de riego</h2>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<a class="btn btn-secondary fr btn-margin" routerLink="/irrigations-plans"> Volver al listado</a>
+		</div>
+	</div>
+
+	<div class="card card-padding">
+
+		<form [formGroup]="updateIrrigationPlanForm" (ngSubmit)="updateIrrigationPlan()">
+			<div class="form-group">
+				<label for="name">Nombre del Plan de riego</label>
+				<input formControlName="name" class="form-control"
+					[ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="">
+				<div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+					<div *ngIf="f.name.errors.required">El Nombre es necesario</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="humidity_min_allowed">Minimo de humedad tolerable (en %)</label>
+				<input formControlName="humidity_min_allowed" class="form-control"
+					[ngClass]="{ 'is-invalid': submitted && f.humidity_min_allowed.errors }"
+					placeholder="">
+				<div *ngIf="submitted && f.humidity_min_allowed.errors" class="invalid-feedback">
+					<div *ngIf="f.humidity_min_allowed.errors.required">El Minimo de humedad tolerable es necesario
+					</div>
+					<div *ngIf="f.humidity_min_allowed.errors.min"> Mínimo 0 </div>
+					<div *ngIf="f.humidity_min_allowed.errors.max"> Máximo 99 </div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="light_max_allowed">Iluminación tolerable</label>
+				<input formControlName="light_max_allowed" class="form-control"
+					[ngClass]="{ 'is-invalid': submitted && f.light_max_allowed.errors }" type="number"
+					placeholder="">
+				<div *ngIf="submitted && f.light_max_allowed.errors" class="invalid-feedback">
+					<div *ngIf="f.light_max_allowed.errors.required">La Iluminación tolerable es necesaria</div>
+					<div *ngIf="f.humidity_min_allowed.errors.min"> Mínimo 0 </div>
+					<div *ngIf="f.humidity_min_allowed.errors.max"> Máximo 99 </div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="temperature_max_allowed">Mínimo de temperatura tolerable (en ºC)</label>
+				<input formControlName="temperature_max_allowed" class="form-control"
+					[ngClass]="{ 'is-invalid': submitted && f.temperature_max_allowed.errors }"
+					placeholder="">
+				<div *ngIf="submitted && f.temperature_max_allowed.errors" class="invalid-feedback">
+					<div *ngIf="f.temperature_max_allowed.errors.required">El Mínimo de temperatura tolerable es
+						necesario</div>
+					<div *ngIf="f.humidity_min_allowed.errors.min"> Mínimo 0 </div>
+					<div *ngIf="f.humidity_min_allowed.errors.max"> Máximo 99 </div>
+				</div>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary" [disabled]="submitted">Crear Plan de Riego</button>
+			</div>
+		</form>
+	</div>
+</div>

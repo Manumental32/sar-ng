@@ -14,7 +14,8 @@ import { IrrigationsPlansComponent } from './irrigations-plans/irrigations-plans
 import { MeasurementsComponent } from './measurements/measurements.component';
 import { UsersComponent } from './users/users.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { IrrigationsPlansNewComponent } from './_components/irrigations-plans-new/irrigations-plans-new.component';
+import { IrrigationsPlansNewComponent } from './irrigations-plans-new/irrigations-plans-new.component';
+import { IrrigationsPlansUpdateComponent } from './irrigations-plans-update/irrigations-plans-update.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { IrrigationsPlansNewComponent } from './_components/irrigations-plans-ne
 	AlertComponent,
 	IrrigationsPlansComponent,
 	IrrigationsPlansNewComponent,
+	IrrigationsPlansUpdateComponent,
 	MeasurementsComponent,
 	UsersComponent,
 	AboutUsComponent,
