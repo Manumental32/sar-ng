@@ -22,7 +22,7 @@
 			<div class="form-group">
 				<label for="humidity_min_allowed">Minimo de humedad tolerable (en %)</label>
 				<input formControlName="humidity_min_allowed" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.humidity_min_allowed.errors }"
+					[ngClass]="{ 'is-invalid': submitted && f.humidity_min_allowed.errors }" type="number"
 					placeholder="">
 				<div *ngIf="submitted && f.humidity_min_allowed.errors" class="invalid-feedback">
 					<div *ngIf="f.humidity_min_allowed.errors.required">El Minimo de humedad tolerable es necesario
@@ -38,24 +38,24 @@
 					placeholder="">
 				<div *ngIf="submitted && f.light_max_allowed.errors" class="invalid-feedback">
 					<div *ngIf="f.light_max_allowed.errors.required">La Iluminación tolerable es necesaria</div>
-					<div *ngIf="f.humidity_min_allowed.errors.min"> Mínimo 0 </div>
-					<div *ngIf="f.humidity_min_allowed.errors.max"> Máximo 99 </div>
+					<div *ngIf="f.light_max_allowed.errors.min"> Mínimo 0 </div>
+					<div *ngIf="f.light_max_allowed.errors.max"> Máximo 1 </div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="temperature_max_allowed">Mínimo de temperatura tolerable (en ºC)</label>
 				<input formControlName="temperature_max_allowed" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.temperature_max_allowed.errors }"
+					[ngClass]="{ 'is-invalid': submitted && f.temperature_max_allowed.errors }" type="number"
 					placeholder="">
 				<div *ngIf="submitted && f.temperature_max_allowed.errors" class="invalid-feedback">
 					<div *ngIf="f.temperature_max_allowed.errors.required">El Mínimo de temperatura tolerable es
 						necesario</div>
-					<div *ngIf="f.humidity_min_allowed.errors.min"> Mínimo 0 </div>
-					<div *ngIf="f.humidity_min_allowed.errors.max"> Máximo 99 </div>
+					<div *ngIf="f.temperature_max_allowed.errors.min"> Mínimo 0 </div>
+					<div *ngIf="f.temperature_max_allowed.errors.max"> Máximo 99 </div>
 				</div>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-primary" [disabled]="submitted">Crear Plan de Riego</button>
+				<button class="btn btn-primary">Editar Plan de Riego</button>
 			</div>
 		</form>
 	</div>

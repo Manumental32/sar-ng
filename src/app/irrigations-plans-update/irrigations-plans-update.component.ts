@@ -45,7 +45,7 @@ export class IrrigationsPlansUpdateComponent implements OnInit {
 		this.updateIrrigationPlanForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			humidity_min_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
-			light_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
+			light_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(1)]],
 			temperature_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
 		});
 	}
@@ -79,13 +79,10 @@ export class IrrigationsPlansUpdateComponent implements OnInit {
 	get f() { return this.updateIrrigationPlanForm.controls; }
 
 	public updateIrrigationPlan() {
+		this.submitted = true;
 		if (this.updateIrrigationPlanForm.invalid) {
 			return;
 		}
-		if (this.submitted === true) {
-			return;
-		}
-		this.submitted = true;
 		return this.http.get(
 			`${environment.apiUrl}/updateIrrigationPlan.php?name='${this.f.name.value}'&humidity_min_allowed=${this.f.humidity_min_allowed.value}&light_max_allowed=${this.f.light_max_allowed.value}&temperature_max_allowed=${this.f.temperature_max_allowed.value}&irrigation_plan_id=${this.irrigationPlanId}`,
 			{ responseType: 'text' }
