@@ -6,9 +6,9 @@ import { AlertService } from '../_services/alert.service';
 export interface IrrigationPLan {
 	irrigation_plan_id: string;
 	name: string;
-	humidity_min_allowed: string;
-	light_max_allowed: string;
-	temperature_max_allowed: string;
+	humidity_min_allowed: number;
+	light_max_allowed: number;
+	temperature_max_allowed: number;
 }
 
 @Component({

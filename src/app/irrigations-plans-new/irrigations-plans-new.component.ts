@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class IrrigationsPlansNewComponent implements OnInit {
 
 	public isLoading = true;
-	public createirrigationPlanForm: FormGroup;
+	public createIrrigationPlanForm: FormGroup;
 	public submitted: boolean = false;
 
 	constructor(
@@ -22,27 +22,25 @@ export class IrrigationsPlansNewComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.createirrigationPlanForm = this.formBuilder.group({
+		this.createIrrigationPlanForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			humidity_min_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
-			light_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
+			light_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(1)]],
 			temperature_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
 			
 		});
 	}
 
 	// convenience getter for easy access to form fields
-	get f() { return this.createirrigationPlanForm.controls; }
+	get f() { return this.createIrrigationPlanForm.controls; }
 
 	public createIrrigationPlan() {
-		if (this.submitted === true){
-			return;
-		}
-        this.submitted = true;
 
-        if (this.createirrigationPlanForm.invalid) {
+		this.submitted = true;
+        if (this.createIrrigationPlanForm.invalid) {
             return;
-        }
+		}
+		
 		return this.http.get(
 				`${environment.apiUrl}/createIrrigationPlan.php?name='${this.f.name.value}'&humidity_min_allowed=${this.f.humidity_min_allowed.value}&light_max_allowed=${this.f.light_max_allowed.value}&temperature_max_allowed=${this.f.temperature_max_allowed.value}`,
 				{ responseType: 'text' }
