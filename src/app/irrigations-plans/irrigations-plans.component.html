@@ -31,6 +31,7 @@
 			<td>
 				<a class="btn btn-secondary" [routerLink]="['/irrigations-plans/' + item.irrigation_plan_id]"> Editar</a>
 				<button class="btn btn-primary" (click)="selectItem(item)"> Seleccionar</button>
+				<button class="btn btn-danger" (click)="deleteItem(item)"> Eliminar</button>
 			</td>
 		</tr>
 		</tbody>

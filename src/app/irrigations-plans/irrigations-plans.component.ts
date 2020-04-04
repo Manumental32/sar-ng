@@ -28,6 +28,10 @@ export class IrrigationsPlansComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.getIrrigationsPlan();
+	}
+
+	private getIrrigationsPlan() {
 		return this.http.get<IrrigationPLan[]>(`${environment.apiUrl}/getIrrigationsPlans.php`)
 			.subscribe(response => {
 				console.log('response :', response);
@@ -68,6 +72,22 @@ export class IrrigationsPlansComponent implements OnInit {
 				error => {
 					this.alertService.error(error.error);
 				});
+	}
+
+	public deleteItem(item: IrrigationPLan) {
+		if(!confirm("¿Estás seguro que queres eliminar el Plan de Riego '" + item.name + "'?")) {
+			return;
+		}
+		return this.http.get(`${environment.apiUrl}/updateIrrigationPlan.php?arduino_id=1&irrigation_plan_id=${item.irrigation_plan_id}&user_id=1&enabled=0`, 
+		{ responseType: 'text'})
+			.subscribe( response => {
+				// console.log('selectItem response :', response);
+				this.alertService.success('Plan de riego eliminado correctamente');
+				this.getIrrigationsPlan();
+			},
+			error => {
+				this.alertService.error(error.error);
+			});
 	}
 
 }
