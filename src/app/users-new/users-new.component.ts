@@ -25,7 +25,7 @@ export class UsersNewComponent implements OnInit {
 		this.createUsersForm = this.formBuilder.group({
 			name: ['', Validators.required],
 			lastname: ['', Validators.required],
-			mail: ['', Validators.required],
+			mail: ['', [Validators.required, Validators.email]],
 			password: ['', Validators.required],
 			
 		});
