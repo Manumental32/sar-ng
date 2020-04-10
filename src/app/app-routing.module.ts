@@ -10,6 +10,8 @@ import { IrrigationsPlansComponent } from './irrigations-plans/irrigations-plans
 import { AboutUsComponent } from './about-us/about-us.component';
 import { IrrigationsPlansNewComponent } from './irrigations-plans-new/irrigations-plans-new.component';
 import { IrrigationsPlansUpdateComponent } from './irrigations-plans-update/irrigations-plans-update.component';
+import { UsersNewComponent } from './users-new/users-new.component';
+import { UsersUpdateComponent } from './users-update/users-update.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'forecast', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -19,7 +21,9 @@ const routes: Routes = [
 	{path: "irrigations-plans/:irrigationPlanId", component: IrrigationsPlansUpdateComponent, canActivate: [AuthGuard]},
 	{path: "measurements", component: MeasurementsComponent, canActivate: [AuthGuard]},
 	{path: "users", component: UsersComponent, canActivate: [AuthGuard]},
+	{path: "users/new", component: UsersNewComponent, canActivate: [AuthGuard]},
 	{path: "about-us", component: AboutUsComponent, canActivate: [AuthGuard]},
+	{path: "users/:userId", component: UsersUpdateComponent, canActivate: [AuthGuard]},
 
 	// {path: "contact-create", component: ContactCreateComponent, canActivate: [AuthGuard]},
 	{path: "login", component: LoginComponent},

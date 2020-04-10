@@ -1,6 +1,12 @@
 <div class="container" style="margin-top: 100px;">
 	<h2>Usuarios habilitados para utilizar el sistema</h2>
 	<!-- {{items | json}} -->
+
+	<div class="row">
+	<div class="col-sm-12">
+		<a class="btn btn-primary btn-margin" routerLink="/users/new"> + Crear Nuevo Usuario</a>
+	</div>
+</div>
 	<div class="card text-center">
 		<table class="table">
 			<thead>
@@ -9,6 +15,7 @@
 				<th>Apellido</th>
 				<th>E-mail</th>
 				<th>Habilitado</th>
+				<th></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -17,6 +24,13 @@
 				<td> {{ item.lastname }}</td>
 				<td> {{ item.mail }}</td>
 				<td> <span class="icon">{{ item.enabled == '1' ? '&#9745;' : '&#9746;' }} </span> </td>
+				<td>
+				<button class="btn btn-danger" (click)="deleteItem(item)" *ngIf="item.enabled == '1'"> Deshabilitar</button>
+				<button class="btn btn-success" (click)="enabledItem(item)" *ngIf="item.enabled == '0'"> Habilitar</button>
+				<a class="btn btn-secondary" [routerLink]="['/users/' + item.user_id]" *ngIf="item.enabled == '1'"> Editar</a>
+				</td>
+
+
 			</tr>
 			</tbody>
 		</table>

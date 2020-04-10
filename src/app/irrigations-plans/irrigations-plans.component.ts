@@ -51,7 +51,7 @@ export class IrrigationsPlansComponent implements OnInit {
 		return this.http.get(`${environment.apiUrl}/changeIrrigationPlan.php?arduino_id=1&irrigation_plan_id=${item.irrigation_plan_id}&user_id=1`, 
 		{ responseType: 'text'})
 			.subscribe( response => {
-				// console.log('selectItem response :', response);
+				 console.log('selectItem response :', response);
 				this.selectedItem = item;
 				this.alertService.success('Plan de riego seleccionado correctamente');
 			},
@@ -81,7 +81,7 @@ export class IrrigationsPlansComponent implements OnInit {
 		return this.http.get(`${environment.apiUrl}/updateIrrigationPlan.php?arduino_id=1&irrigation_plan_id=${item.irrigation_plan_id}&user_id=1&enabled=0`, 
 		{ responseType: 'text'})
 			.subscribe( response => {
-				// console.log('selectItem response :', response);
+				 console.log('selectItem nair response :', response);
 				this.alertService.success('Plan de riego eliminado correctamente');
 				this.getIrrigationsPlan();
 			},

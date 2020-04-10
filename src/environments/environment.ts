@@ -5,7 +5,7 @@
 export const environment = {
 	production: false,
 	// apiUrl: 'http://184.72.104.116'
-	apiUrl: 'http://localhost:9999'
+	apiUrl: 'http://localhost:80/sar'
   };
   
   /*
