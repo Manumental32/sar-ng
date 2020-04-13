@@ -24,6 +24,7 @@ export class MeasurementsComponent implements OnInit, OnDestroy {
 	selectedItem: IrrigationPLan;
 	periodicCheckSubscription: Subscription;
 	public isLoadingItem = true;
+	public irrigationOn = false;
 
 	constructor(
 		private http: HttpClient,
@@ -61,20 +62,6 @@ export class MeasurementsComponent implements OnInit, OnDestroy {
 			);
 	}
 
-	public selectItem(item) {
-		console.log('item :', item);
-		// http://localhost:9999/changeIrrigationPlan.php?arduino_id=1&irrigation_plan_id=2&user_id=3
-		return this.http.get(`${environment.apiUrl}/changeIrrigationPlan.php?arduino_id=1&irrigation_plan_id=${item.irrigation_plan_id}&user_id=1`)
-			.subscribe(
-				response => {
-					console.log('response :', response);
-					this.selectedItem = item;
-					this.alertService.success('Plan de riego seleccionado correctamente');
-				},
-				error => {
-					this.alertService.error(error.error);
-				});
-	}
 
 	public getCurrentIrrigationPlanSelected() {
 		// http://localhost:9999/getCurrentIrrigationPlanSelected.php?arduino_id=1&user_id=1
@@ -84,11 +71,33 @@ export class MeasurementsComponent implements OnInit, OnDestroy {
 					console.log('response :', response);
 					console.log('this.items :', this.items);
 					this.selectedItem = response;
+					this.CompareIrrigationPlan();
 				},
 				error => {
 					this.alertService.error(error.error);
 				});
 	}
+
+
+
+public CompareIrrigationPlan() {
+	console.log('pase por aca 1')
+	console.log('this.items :', this.items[1]);
+	console.log('this.selectedItem :', this.selectedItem.light_max_allowed);
+	if ((this.items[0] < this.selectedItem.humidity_min_allowed) && (this.items[1] <= this.selectedItem.light_max_allowed) && (this.items[2] <= this.selectedItem.temperature_max_allowed)) {
+			console.log('pase por aca');
+			this.irrigationOn = true;
+			this.alertService.success('El sistema está regando');
+
+	}
+	else  {
+		this.alertService.error('El sistema no está regando');
+	}
+}
+
+
+
+
 
 	ngOnDestroy() {
 		this.periodicCheckSubscription.unsubscribe();
