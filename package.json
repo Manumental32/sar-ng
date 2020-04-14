@@ -1,6 +1,6 @@
 {
 	"name": "sar-ng",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"scripts": {
 		"ng": "ng",
 		"start-old": "ng serve",
@@ -9,7 +9,7 @@
 		"lint": "ng lint",
 		"e2e": "ng e2e",
 		"start": "node server.js",
-		"heroku-postbuild": "ng build --prod"
+		"heroku-postbuild": "ng build --prod --base-href"
 	},
 	"engines": {
 		"node": "v10.15.3",
