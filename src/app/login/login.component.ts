@@ -53,11 +53,22 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .subscribe(
                 data => {
+                    this.alertService.success('El usuario se encuentra deshabilitado1');
+                    console.log('data:', data);
+                    this.submitted = false;
+                    this.loading = false;
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
+                    if (error === false) {
+                    this.alertService.error('El usuario se encuentra deshabilitado');
+                }
+                else {
                     this.alertService.error(error.error);
+                }
                     this.loading = false;
+                    this.submitted = false;
+                    console.log('error:', error);
                 });
     }
 }

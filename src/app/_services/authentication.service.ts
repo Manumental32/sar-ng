@@ -21,40 +21,29 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
 		console.log('username :', username);
-		// try {
+		 try {
 			return this.http.get<any>(`${environment.apiUrl}/getUsers.php?mail=${username}&password=${password}`)
 				.pipe(map(user => {
 					console.log('user :', user);
 					// login successful if there's a jwt token in the response
-					if (user && user[0]) {
+					if (user && user[0] && user[0].enabled == 1) {
 						// store user details and jwt token in local storage to keep user logged in between page refreshes
 						localStorage.setItem('currentUser', JSON.stringify(user[0]));
 						this.currentUserSubject.next(user[0]);
+                        console.log('user[0].enabled:', user[0].enabled);
+                        return user;
 					} else {
 						console.log('sin user :', user);
+                        throw false;
 					}
 
-					return user;
 				}
 			))
-		// }
-		// catch(error) {
-		// 	return error;
-		// }
+		 }
+		 catch(error) {
+		 	return error;
+		 }
 	};
-
-        // return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-        //     .pipe(map(user => {
-        //         // login successful if there's a jwt token in the response
-        //         if (user && user.token) {
-        //             // store user details and jwt token in local storage to keep user logged in between page refreshes
-        //             localStorage.setItem('currentUser', JSON.stringify(user));
-        //             this.currentUserSubject.next(user);
-        //         }
-
-        //         return user;
-        //     }));
-    // }
 
     logout() {
         // remove user from local storage to log user out
