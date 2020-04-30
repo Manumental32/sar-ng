@@ -43,8 +43,8 @@ export class UsersUpdateComponent implements OnInit {
 
 	private createForm() {
 		this.updateUsersForm = this.formBuilder.group({
-			name: ['', Validators.required],
-			lastname: ['', Validators.required],
+			name: ['', [Validators.required, Validators.maxLength(20)]],
+			lastname: ['', [Validators.required, Validators.maxLength(30)]],
 			mail: ['', Validators.required],
 			password: ['', Validators.required],
 		});

@@ -43,7 +43,7 @@ export class IrrigationsPlansUpdateComponent implements OnInit {
 
 	private createForm() {
 		this.updateIrrigationPlanForm = this.formBuilder.group({
-			name: ['', Validators.required],
+			name: ['', [Validators.required, Validators.maxLength(20)]],
 			humidity_min_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
 			light_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(1)]],
 			temperature_max_allowed: ['', [Validators.required, Validators.min(0), Validators.max(99)]],
