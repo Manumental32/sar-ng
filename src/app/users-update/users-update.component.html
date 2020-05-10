@@ -26,28 +26,29 @@
 					[ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" type="text"
 					placeholder="">
 				<div *ngIf="submitted && f.lastname" class="invalid-feedback">
-					<div *ngIf="f.lastname.required">El apellido necesario
-					</div>
+					<div *ngIf="f.lastname.errors.required">El apellido necesario</div>
 					<div *ngIf="f.lastname.errors.maxlength">El apellido debe tener máximo 30 caracteres</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="mail">Mail</label>
 				<input formControlName="mail" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.mail.errors }" type="text"
+					[ngClass]="{ 'is-invalid': submitted && f.mail.errors }" type="email"
 					placeholder="">
 				<div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
 					<div *ngIf="f.mail.errors.required">El mail es necesario</div>
+					<div *ngIf="f.mail.errors.email">El mail no tiene un formato válido</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="password">Contraseña</label>
 				<input formControlName="password" class="form-control"
-					[ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="text"
+					[ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="password"
 					placeholder="">
 				<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
 					<div *ngIf="f.password.errors.required">La contraseña es
 						necesaria</div>
+						<div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 4 caracteres</div>
 				</div>
 			</div>
 			<div class="form-group">

@@ -10,6 +10,7 @@ export interface IrrigationPLan {
 	humidity_min_allowed: number;
 	light_max_allowed: number;
 	temperature_max_allowed: number;
+
 }
 
 @Component({
@@ -25,6 +26,11 @@ export class MeasurementsComponent implements OnInit, OnDestroy {
 	periodicCheckSubscription: Subscription;
 	public isLoadingItem = true;
 	public irrigationOn = false;
+	selectedHumidityMinAllowed: any;
+	selectedLigthMaxAllowed: any;
+	selectedTemperatureMaxAllowed: any;
+
+
 
 	constructor(
 		private http: HttpClient,
@@ -83,14 +89,17 @@ public CompareIrrigationPlan() {
 	console.log('pase por aca 1')
 	console.log('this.items :', this.items);
 	console.log('this.selectedItem :', this.selectedItem);
-	let itemHumidityMinAllowed = parseInt(this.items[0]);
-	let selectedHumidityMinAllowed = parseInt(this.selectedItem.humidity_min_allowed);
-	let itemLigthMaxAllowed = parseInt(this.items[1]);
-	let selectedLigthMaxAllowed = parseInt(this.selectedItem.light_max_allowed);
-	let itemTemperatureMaxAllowed = parseInt(this.items[2]);
-	let selectedTemperatureMaxAllowed = parseInt(this.selectedItem.temperature_max_allowed);
-	if ((itemHumidityMinAllowed <= selectedHumidityMinAllowed) && (itemLigthMaxAllowed <= selectedLigthMaxAllowed) 
-		&& (itemTemperatureMaxAllowed <= selectedTemperatureMaxAllowed)) {
+	if (!this.items){
+		return false;
+	}
+	let itemHumidityMinAllowed = +this.items[0];
+	this.selectedHumidityMinAllowed = +this.selectedItem.humidity_min_allowed;
+	let itemLigthMaxAllowed = +this.items[1];
+	this.selectedLigthMaxAllowed = +this.selectedItem.light_max_allowed;
+	let itemTemperatureMaxAllowed = +this.items[2];
+	this.selectedTemperatureMaxAllowed = +this.selectedItem.temperature_max_allowed;
+	if ((itemHumidityMinAllowed <= this.selectedHumidityMinAllowed) && (itemLigthMaxAllowed <= this.selectedLigthMaxAllowed) 
+		&& (itemTemperatureMaxAllowed <= this.selectedTemperatureMaxAllowed)) {
 			this.irrigationOn = true;
 			this.alertService.success('El sistema está regando');
 			return false;
