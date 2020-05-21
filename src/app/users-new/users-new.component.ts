@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from 'src/app/_services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PasswordValidation } from './password-validation';
 
 @Component({
 	selector: 'app-users-new',
@@ -27,8 +28,10 @@ export class UsersNewComponent implements OnInit {
 			lastname: ['', [Validators.required, Validators.maxLength(30)]],
 			mail: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(4)]],
-			
-		});
+			confirmPassword: ['', [Validators.required, Validators.minLength(4)]],
+		}, {
+			validator: PasswordValidation.MatchPassword,
+		  });
 	}
 
 	// convenience getter for easy access to form fields
