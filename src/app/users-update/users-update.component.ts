@@ -76,7 +76,6 @@ export class UsersUpdateComponent implements OnInit {
 			lastname: this.selectedItem.lastname,
 			mail: this.selectedItem.mail,
 			password: this.selectedItem.password,
-			confirmPassword: this.selectedItem.confirmPassword='',
 		});
 	}
 
