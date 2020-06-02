@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/_services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from 'src/app/users/users.component';
+import { PasswordValidation } from 'src/app/users-new/password-validation';
 
 @Component({
 	selector: 'app-users-update',
@@ -47,6 +48,9 @@ export class UsersUpdateComponent implements OnInit {
 			lastname: ['', [Validators.required, Validators.maxLength(30)]],
 			mail: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(4)]],
+			confirmPassword: ['', [Validators.required, Validators.minLength(4)]],
+		}, {
+			validator: PasswordValidation.MatchPassword,
 		});
 	}
 
@@ -72,6 +76,7 @@ export class UsersUpdateComponent implements OnInit {
 			lastname: this.selectedItem.lastname,
 			mail: this.selectedItem.mail,
 			password: this.selectedItem.password,
+			confirmPassword: this.selectedItem.confirmPassword='',
 		});
 	}
 
