@@ -4,7 +4,7 @@ Change endpoint apiUrl in environment.ts
 
 ## Development setup
 
-Run `nmp install` for install proyect dependencies.
+Run `npm install` for install proyect dependencies.
 
 ## Angular 7 & Bootstrap 4
 
